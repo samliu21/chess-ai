@@ -17,3 +17,5 @@ x = tf.keras.layers.Softmax(axis=[1, 2])(x)
 model = tf.keras.Model(inputs=[board,], outputs=x)
 
 model.compile('adam', 'categorical_crossentropy')
+
+model.summary()
