@@ -1,4 +1,5 @@
 import pygame
+import numpy as np
 
 from globals import board_colour, square_size
 import globals
@@ -78,6 +79,10 @@ def draw_pieces(win, fen, human_white):
         'K': wk, 
     }
 
+    if not human_white:
+        arr = np.array(arr)
+        arr = np.flip(arr, axis=[0, 1])
+
     for x in range(8):
         for y in range(8):
             
@@ -85,9 +90,5 @@ def draw_pieces(win, fen, human_white):
                 continue 
             
             piece = piece_to_variable[arr[y][x]]
-
-            if not human_white:
-                y = 7 - y
-                # x = 7 - x 
 
             win.blit(piece, (x * square_size, y * square_size))

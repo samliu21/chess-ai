@@ -70,7 +70,8 @@ class HumanPlayer:
 
 		if human_white:
 			number = 9 - number
-			# letter = ord('a') + 9 - letter
+		else:
+			letter = 2 * ord('a') + 7 - letter
 
 		letter = chr(letter)
 
@@ -122,6 +123,9 @@ class AIPlayer:
 		if human_white:
 			globals.from_square[1] = 7 - globals.from_square[1]
 			globals.to_square[1] = 7 - globals.to_square[1]
+		else:
+			globals.from_square[0] = 7 - globals.from_square[0]
+			globals.to_square[0] = 7 - globals.to_square[0]
 
 	@staticmethod
 	def uci_to_row_col(uci):
