@@ -1,8 +1,9 @@
 # Data Cleaning Process
-1. Download raw PGN file from https://database.lichess.org
-2. Download the `pgn-extract` <a href="https://www.cs.kent.ac.uk/people/staff/djb/pgn-extract/">module</a> and call `pgn-extract --quiet -D --fencomments --fixresulttags -w 100000 -o output.pgn master_db.pgn`. This adds a FEN comment after each move
-3. Run `extract_fen.py` to extract the FEN comments, keeping only the board position and turn in the FEN
-4. Run `get_moves.py` to extract the square that was moved from and to in the current FEN position
-5. `cat db.pgn | sort | uniq > file.txt` removes duplicates
-6. `cat file.txt | sort -R > file2.txt` randomizes the dataset
+1. Download the raw PGN data file from <a href="https://database.lichess.org">Lichess</a>.
+2. Download the `pgn-extract` module<a href="https://www.cs.kent.ac.uk/people/staff/djb/pgn-extract/">here</a>.
+3. Run `pgn-extract --quiet -D --fencomments --fixresulttags -w 100000 -o output.pgn master_db.pgn`. This adds a FEN comment after each move and reduces each game to a single line. 
+4. Run `extract_fen.py` to extract the FEN comments. 
+5. `get_moves.py` determines the square that was moved out of and the square that was moved into for each move. 
+6. `cat db.pgn | sort | uniq > file.txt` removes duplicates.
+7. `cat file.txt | sort -R > file2.txt` randomizes the dataset.
 
