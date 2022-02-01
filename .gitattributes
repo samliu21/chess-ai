@@ -1,0 +1,2 @@
+gui/models/1100-elo filter=lfs diff=lfs merge=lfs -text
+gui/models/700-elo filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,13 @@
+__pycache__
+*.pgn
+bin
+lib
+include
+pyvenv.cfg
+old
+gui/models/model3.h5
+train/models
+train/oldmodels
+train/checkpoints
+train/*.txt
+train/gm_to
