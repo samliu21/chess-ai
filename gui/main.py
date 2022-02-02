@@ -1,7 +1,7 @@
 from tensorflow.keras.models import load_model
 
 from_model = load_model('models/1100-elo/from.h5', compile=False)
-to_model = load_model('models/model3.h5', compile=False)
+to_model = load_model('models/gm.h5', compile=False)
 
 import pygame 
 import chess 
@@ -52,7 +52,7 @@ while run:
 		if game_over_countdown > 0:
 			game_over_countdown -= 1
 		else:
-			board.reset()
+			reset()
 			game_over_countdown = 50
 		continue
 

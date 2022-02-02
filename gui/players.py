@@ -33,11 +33,14 @@ class HumanPlayer:
 				if not move_is_legal:
 					self.move_from_square = square
 
-					piece = board.piece_at(chess.parse_square(square))
-					if piece:
-						globals.from_square = self.coordinates_to_numbers(pygame.mouse.get_pos())
-					else:
-						globals.from_square = None
+					try:
+						piece = board.piece_at(chess.parse_square(square))
+						if piece:
+							globals.from_square = self.coordinates_to_numbers(pygame.mouse.get_pos())
+						else:
+							globals.from_square = None
+					except:
+						pass
 
 					return False
 
