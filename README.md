@@ -105,3 +105,12 @@ Trainable params: 2,836,131
 Non-trainable params: 2,882
 __________________________________________________________________________________________________
 ```
+
+## Failed Attempt
+The initial approach was to use machine learning to create a board evaluation neural network. Combined with a minimax algorithm with alpha-beta pruning, the hope was that this algorithm would create a strong chess AI. There were two issues with this approach:
+
+1. The evaluation network didn't perform to my expectations. It could detect material imbalances but couldn't detect simple checkmates.
+
+2. Due to the large action space of chess, minimax is very slow, even when optimzied with alpha-beta pruning.
+
+Together, these factors prompted me to scrap this initial idea and try another.

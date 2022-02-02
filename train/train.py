@@ -63,7 +63,7 @@ val = ds.take(VAL_SIZE).batch(BATCH_SIZE)
 
 class SaveModel(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
-        name = 'gm_to/model{}.h5'.format(epoch + 1)
+        name = 'gm_to/model{}.h5'.format(epoch + 12)
         self.model.save(name, overwrite=True,)
 
 cbk = SaveModel()
