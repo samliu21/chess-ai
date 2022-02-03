@@ -17,7 +17,7 @@ bq = pygame.image.load('images/black_queen.gif')
 wk = pygame.image.load('images/white_king.gif')
 bk = pygame.image.load('images/black_king.gif')
 
-switch = pygame.image.load('images/Picture1.png')
+switch = pygame.image.load('images/switch.png')
 switch = pygame.transform.scale(switch, (50, 60))
 
 restart = pygame.image.load('images/restart.png')
