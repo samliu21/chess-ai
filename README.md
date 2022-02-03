@@ -24,7 +24,7 @@ The approach is best illustrated with an example. Consider the starting board po
 
 Among all legal moves, the largest product is the selected move. 
 
-The neural networks consist of five convolutional layers, followed by two affine layers and an output layer. A more detailed sketch of the architecture can be found below:
+The neural networks consist of six convolutional layers, followed by two affine layers and an output layer. A more detailed sketch of the architecture can be found below:
 
 ```
 Model: "model"
