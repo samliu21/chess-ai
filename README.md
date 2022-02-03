@@ -1,6 +1,8 @@
 # chess-ai
 
-Here's a video where I (white) get crushed by my bot (black) :)
+I've been playing chess for a very long time and ever since I started CS, I've always wanted to create a chess bot. I've finally done it :)
+
+Here's a video where I (white) get crushed by my bot (black) 😉.
 
 https://user-images.githubusercontent.com/64169932/152080181-d7370b95-b44e-4d91-aa54-a69f4d3d5795.mov
 
@@ -8,7 +10,7 @@ https://user-images.githubusercontent.com/64169932/152080181-d7370b95-b44e-4d91-
 1. Run `git clone https://github.com/samliu21/chess-ai`. Navigate into the directory with `cd chess-ai`.
 2. Create a virtual environment using `python -m venv .` and activate it with `source bin/activate`.
 3. Install the necessary dependencies using `python -m pip install -r requirements.txt`.
-4. Call `python gui/main.py` to play!
+4. Call `cd gui` and `python main.py` to play!
 
 ## GUI
 The GUI was hand-made using the `pygame` and `python-chess` modules.
@@ -105,6 +107,16 @@ Trainable params: 2,836,131
 Non-trainable params: 2,882
 __________________________________________________________________________________________________
 ```
+
+## Data 
+I used the official Lichess <a href="https://database.lichess.org">database</a>, which came in a standard PGN format. The following was the data cleaning process:
+
+- Use `pgn-extract` to add FENs after each move
+- Use a python script to extract the FENs
+- Compare adjacent FENs to determine the played move in the current board position
+- Extract the square that was moved out of and the square that was moved into
+
+For more information, look at the `data_cleaning` folder.
 
 ## Failed Attempt
 The initial approach was to use machine learning to create a board evaluation neural network. Combined with a minimax algorithm with alpha-beta pruning, the hope was that this algorithm would create a strong chess AI. There were two issues with this approach:

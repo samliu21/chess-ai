@@ -6,9 +6,11 @@ lib
 include
 pyvenv.cfg
 old
-gui/models/gm.h5
+gui/models/gm_from.h5
+gui/models/gm_to.h5
 train/models
 train/oldmodels
 train/checkpoints
 train/*.txt
 train/gm_to
+train/gm_from

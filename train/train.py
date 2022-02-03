@@ -4,7 +4,7 @@ import numpy as np
 from model import model
 from util import fen_to_matrix, invert_fen
 
-TRAIN_MOVE_FROM = False
+TRAIN_MOVE_FROM = True
 
 BATCH_SIZE = 1024
 VAL_SIZE = BATCH_SIZE * 10
@@ -63,14 +63,14 @@ val = ds.take(VAL_SIZE).batch(BATCH_SIZE)
 
 class SaveModel(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
-        name = 'gm_to/model{}.h5'.format(epoch + 12)
+        name = 'gm_from/model{}.h5'.format(epoch + 1)
         self.model.save(name, overwrite=True,)
 
 cbk = SaveModel()
 
 # print('Fitting...')
 
-model.load_weights('checkpoints/ckpt')
+# model.load_weights('checkpoints/ckpt')
 
 model.fit(
     train,
