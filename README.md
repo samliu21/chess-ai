@@ -12,6 +12,25 @@ https://user-images.githubusercontent.com/64169932/152080181-d7370b95-b44e-4d91-
 3. Install the necessary dependencies using `python -m pip install -r requirements.txt`.
 4. Call `cd gui` and `python main.py` to play!
 
+## Data 
+I used the official Lichess <a href="https://database.lichess.org">database</a>, which came in a standard PGN format. The following was the data cleaning process:
+
+- Use `pgn-extract` to add FENs after each move
+- Use a python script to extract the FENs
+- Compare adjacent FENs to determine the played move in the current board position
+- Extract the square that was moved out of and the square that was moved into
+
+For more information, look at the `data_cleaning` folder.
+
+## Failed Attempt
+The initial approach was to use machine learning to create a board evaluation neural network. Combined with a minimax algorithm with alpha-beta pruning, the hope was that this algorithm would create a strong chess AI. There were two issues with this approach:
+
+1. The evaluation network didn't perform to my expectations. It could detect material imbalances but couldn't detect simple checkmates.
+
+2. Due to the large action space of chess, minimax is very slow, even when optimzied with alpha-beta pruning.
+
+Together, these factors prompted me to scrap this initial idea and try another.
+
 ## GUI
 The GUI was hand-made using the `pygame` and `python-chess` modules.
 
@@ -107,22 +126,3 @@ Trainable params: 2,836,131
 Non-trainable params: 2,882
 __________________________________________________________________________________________________
 ```
-
-## Data 
-I used the official Lichess <a href="https://database.lichess.org">database</a>, which came in a standard PGN format. The following was the data cleaning process:
-
-- Use `pgn-extract` to add FENs after each move
-- Use a python script to extract the FENs
-- Compare adjacent FENs to determine the played move in the current board position
-- Extract the square that was moved out of and the square that was moved into
-
-For more information, look at the `data_cleaning` folder.
-
-## Failed Attempt
-The initial approach was to use machine learning to create a board evaluation neural network. Combined with a minimax algorithm with alpha-beta pruning, the hope was that this algorithm would create a strong chess AI. There were two issues with this approach:
-
-1. The evaluation network didn't perform to my expectations. It could detect material imbalances but couldn't detect simple checkmates.
-
-2. Due to the large action space of chess, minimax is very slow, even when optimzied with alpha-beta pruning.
-
-Together, these factors prompted me to scrap this initial idea and try another.
