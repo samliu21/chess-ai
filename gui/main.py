@@ -1,7 +1,7 @@
 from tensorflow.keras.models import load_model
 
-from_model = load_model('models/gm_from.h5', compile=False)
-to_model = load_model('models/gm_to.h5', compile=False)
+from_model = load_model('models/1300-elo/from.h5', compile=False)
+to_model = load_model('models/1300-elo/to.h5', compile=False)
 
 import pygame 
 import chess 
