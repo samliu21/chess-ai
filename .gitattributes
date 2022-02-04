@@ -1,2 +1,4 @@
 gui/models/1100-elo filter=lfs diff=lfs merge=lfs -text
 gui/models/700-elo filter=lfs diff=lfs merge=lfs -text
+gui/models/1300-elo/from.h5 filter=lfs diff=lfs merge=lfs -text
+gui/models/1300-elo/to.h5 filter=lfs diff=lfs merge=lfs -text
