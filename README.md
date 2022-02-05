@@ -1,6 +1,6 @@
 # chess-ai
 
-I've been playing chess for a very long time and ever since I started CS, I've always wanted to create a chess bot. I've finally done it :)
+I've been playing chess for a very long time, and ever since I started CS, I've always wanted to create a chess bot. I've finally done it 🙃.
 
 Here's a video where I (white) get crushed by my bot (black) 😉.
 
@@ -10,10 +10,10 @@ https://user-images.githubusercontent.com/64169932/152080181-d7370b95-b44e-4d91-
 1. Run `git clone https://github.com/samliu21/chess-ai`. Navigate into the directory with `cd chess-ai`.
 2. Create a virtual environment using `python -m venv .` and activate it with `source bin/activate`.
 3. Install the necessary dependencies using `python -m pip install -r requirements.txt`.
-4. Call `cd gui` and `python main.py` to play!
+4. Navigate to the correct directory using `cd gui` and call `python main.py` to play!
 
 ## Data 
-I used the official Lichess <a href="https://database.lichess.org">database</a>, which came in a standard PGN format. The following was the data cleaning process:
+I used the official Lichess <a href="https://database.lichess.org">database</a>, which contained games in a standard PGN format. Here is the data cleaning process:
 
 - Use `pgn-extract` to add FENs after each move
 - Use a python script to extract the FENs
@@ -23,11 +23,11 @@ I used the official Lichess <a href="https://database.lichess.org">database</a>,
 For more information, look at the `data_cleaning` folder.
 
 ## Failed Attempt
-The initial approach was to use machine learning to create a board evaluation neural network. Combined with a minimax algorithm with alpha-beta pruning, the hope was that this algorithm would create a strong chess AI. There were two issues with this approach:
+Initially, I tried to create a board evaluation neural network to pair with a minimax algorithm. There were two issues with this approach:
 
 1. The evaluation network didn't perform to my expectations. It could detect material imbalances but couldn't detect simple checkmates.
 
-2. Due to the large action space of chess, minimax is very slow, even when optimzied with alpha-beta pruning.
+2. Due to the large action space in chess, the minimax algorithm is very slow, even when optimzied with alpha-beta pruning.
 
 Together, these factors prompted me to scrap this initial idea and try another.
 
@@ -39,7 +39,7 @@ This architecture was largely inspired by this <a href="http://cs231n.stanford.e
 
 The AI uses two models. They both receive a board position as input and output an `8x8` matrix of softmax probabilities. The "from model" predicts the square to be moved out of and the "to model" predicts the square to be moved into.
 
-The approach is best illustrated with an example. Consider the starting board position and the move: `Nf3`. The evaluation of this move is the product of the value at the `g1` square of the from model and the value at the `f3` square of the to model.
+This approach is best illustrated with an example. Consider the starting board position and the move: `Nf3`. The evaluation of this move is the product of the value at the `g1` square of the from model and the value at the `f3` square of the to model.
 
 Among all legal moves, the largest product is the selected move. 
 
