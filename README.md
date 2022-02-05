@@ -34,7 +34,7 @@ Together, these factors prompted me to scrap this initial idea and try another.
 ## GUI
 The GUI was hand-made using the `pygame` and `python-chess` modules.
 
-## AI Architecture
+## Model
 This architecture was largely inspired by this <a href="http://cs231n.stanford.edu/reports/2015/pdfs/ConvChess.pdf">Standford paper</a>.
 
 The AI uses two models. They both receive a board position as input and output an `8x8` matrix of softmax probabilities. The "from model" predicts the square to be moved out of and the "to model" predicts the square to be moved into.
