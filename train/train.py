@@ -1,6 +1,8 @@
 import tensorflow as tf
 import numpy as np
 
+import sys 
+
 from model import model
 from util import fen_to_matrix, invert_fen
 
@@ -51,14 +53,16 @@ def preprocess(inp):
             return board, moved_from_board
         else:
             return board, moved_to_board
-        
+    
+    # return tf.random.normal((8, 8))
     return tf.py_function(func=helper, inp=[inp], Tout=[tf.int32, tf.int32])
 
 ds = tf.data.TextLineDataset('gm.txt').repeat()
-ds = ds.map(preprocess)
 ds = ds.shuffle(buffer_size=1000)
+# ds = ds.batch(BATCH_SIZE)
+ds = ds.map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
 
-train = ds.skip(VAL_SIZE).batch(BATCH_SIZE)
+train = ds.skip(VAL_SIZE).batch(BATCH_SIZE).prefetch(tf.data.AUTOTUNE)
 val = ds.take(VAL_SIZE).batch(BATCH_SIZE)
 
 class SaveModel(tf.keras.callbacks.Callback):
@@ -67,6 +71,11 @@ class SaveModel(tf.keras.callbacks.Callback):
         self.model.save(name, overwrite=True,)
 
 cbk = SaveModel()
+
+tensorboard_callback = tf.keras.callbacks.TensorBoard(
+    log_dir='logs/callback',
+    profile_batch='10,14',
+)
 
 # print('Fitting...')
 
@@ -77,7 +86,8 @@ model.fit(
     epochs=EPOCHS, 
     steps_per_epoch=STEPS_PER_EPOCH, 
     validation_data=val,
-    callbacks=[cbk],
+    callbacks=[tensorboard_callback],
+    verbose=0,
 )
 
 # https://us-central1-spearsx.cloudfunctions.net/chesspic-fen-image/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR
